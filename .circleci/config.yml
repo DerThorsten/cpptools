@@ -38,9 +38,6 @@ variables:
       name: Run tests
       command: |
         conda install conda-build make
-        cd ..
-        cookiecutter repo --overwrite-if-exists --no-input
-        cd cpptools
         conda build recipe -c conda-forge
 
 
