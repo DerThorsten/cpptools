@@ -1,0 +1,20 @@
+name: cpptools-dev-requirements
+
+channels:
+  - anaconda
+  - conda-forge
+dependencies:
+  - make
+  - cmake >=3.1
+  - sphinx 
+  - breathe
+  - pytest
+  - xtl
+  - xtensor
+  
+  - python >=3.6
+  - numpy
+  - xtensor-python
+  
+  - pybind11
+  
