@@ -92,7 +92,6 @@ jobs:
       - bash: echo "##vso[task.prependpath]$CONDA/bin"
         displayName: Add conda to PATH
       - script: |
-          source activate myroot || exit 1
           conda config --set always_yes yes --set changeps1 no || exit 1
           conda env create -f cpptools-dev-requirements.yml || exit 1
           echo "source conda env" || exit 1
@@ -130,6 +129,7 @@ jobs:
       displayName: Create Anaconda environment
     - script: |
         conda config --set always_yes yes --set changeps1 no || exit 1
+        conda update -q conda || exit 1
         conda env create -f cpptools-dev-requirements.yml || exit 1
         call activate cpptools-dev-requirements || exit 1
         mkdir build || exit 1
