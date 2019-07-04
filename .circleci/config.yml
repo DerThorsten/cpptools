@@ -31,6 +31,12 @@ variables:
         make -j2
         make cpp-test
         make python-test
+        
+        cd examples
+        ./hello_world
+        cd ..
+        cd benchmark
+        ./benchmark_cpptools
         cd ..
 
   run_test_conda_build: &run_test_conda_build

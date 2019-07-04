@@ -3,6 +3,6 @@ libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
 includedir=${prefix}/include
 
 Name: cpptools
-Description: cpptools is a C++ library
+Description: cpptools is a modern C++ library
 Version: @cpptools_VERSION@
 Cflags: -I${includedir}

@@ -1,7 +1,7 @@
 Introduction
 ------------
 
-cpptools is a C++ library
+cpptools is a modern C++ library
 
 `cookiecutter.project_name` provides:
 

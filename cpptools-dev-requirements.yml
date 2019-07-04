@@ -11,10 +11,8 @@ dependencies:
   - pytest
   - xtl
   - xtensor
-  
   - python >=3.6
   - numpy
   - xtensor-python
-  
   - pybind11
   
