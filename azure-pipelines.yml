@@ -130,6 +130,7 @@ jobs:
         conda env create -f cpptools-dev-requirements.yml || exit 1
         call activate cpptools-dev-requirements || exit 1
         mkdir build || exit 1
+        cd build || exit 1
         cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release  ^
               -DDEPENDENCY_SEARCH_PREFIX="%CONDA_PREFIX%\Library" -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%\Library" || exit 1
         make -j2 || exit 1
