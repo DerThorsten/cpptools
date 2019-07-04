@@ -133,7 +133,7 @@ jobs:
         cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release  ^
               -DDEPENDENCY_SEARCH_PREFIX="%CONDA_PREFIX%\Library" -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%\Library" || exit 1
         make -j2 || exit 1
-        make python-test || exit 11
+        make python-test || exit 1
         echo "Completed script successfully" || exit 1
         echo Completed script successfully || exit 1
 
