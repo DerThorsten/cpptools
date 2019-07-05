@@ -4,7 +4,7 @@
 
 
 
-#define CPPTOOLS_VERSION_PATCH 1
+#define CPPTOOLS_VERSION_PATCH 0
 
 namespace cpptools {
 
