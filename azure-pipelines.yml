@@ -126,7 +126,7 @@ jobs:
       displayName: build project
     - script: |
         echo "cd path"
-        cd ..\cpptools\build 
+        cd build
         echo "activate"
         call activate cpptools-dev-requirements
         echo "run tests"
