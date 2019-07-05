@@ -106,8 +106,6 @@ jobs:
       displayName: create dev requirements env
 
     - script: |
-        echo "cd path"
-        cd ..\cpptools
         echo "activate"
         call activate cpptools-dev-requirements
         echo "mkdir"
@@ -120,7 +118,7 @@ jobs:
       displayName: configure project
     - script: |
         echo "cd path"
-        cd ..\cpptools\build
+        cd build
         echo "activate"
         call activate cpptools-dev-requirements
         cmake --build . --target ALL_BUILD
