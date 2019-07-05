@@ -4,9 +4,11 @@
 
 
 
-#define CPPTOOLS_VERSION_MAJOR '1'
-#define CPPTOOLS_VERSION_MINOR 1
-#define CPPTOOLS_VERSION_PATCH 0
+
+#include "cpptools/cpptools_version_major.hpp"
+#include "cpptools/cpptools_version_minor.hpp"
+#include "cpptools/cpptools_version_patch.hpp"
+
 
 namespace cpptools {
 
