@@ -4,7 +4,7 @@
 
 
 
-#define CPPTOOLS_VERSION_MAJOR 2
+#define CPPTOOLS_VERSION_MAJOR 0
 
 
 namespace cpptools {
