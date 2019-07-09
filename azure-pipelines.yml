@@ -1,0 +1,140 @@
+# Pipelines are made of one or more jobs and may include resources and variables.
+# Jobs are made of one or more steps plus some job-specific data. Steps can be
+# tasks, scripts, or references to external templates.
+
+jobs:
+  - job: Linux
+    pool:
+      vmImage: 'ubuntu-16.04'
+    strategy:
+      maxParallel: 2
+      # matrix:
+      #   py36:
+      #     PY_VERSION: 3.6
+      #   py37:
+      #     PY_VERSION: 3.7
+    variables:
+      repoDir: '$(Build.Repository.LocalPath)'
+
+    steps:
+        # NOTE: On Linux, there is no write permission in the miniconda installation,
+        # and the CondaEnvironment@1 does not honor a prefix. Therefore we can *not*
+        # use the conda that comes with Azure as we do on Windows. This is also
+        # documented in the following issue: https://github.com/Microsoft/vsts-tasks/issues/8299
+        # Therefore we need to create our own conda environment from scratch.
+      - task: CondaEnvironment@1
+        inputs:
+          updateConda: false
+      - script: |
+          conda config --set always_yes yes --set changeps1 no 
+          conda update -q conda 
+          conda env create -f cpptools-dev-requirements.yml 
+          source activate cpptools-dev-requirements 
+          mkdir build 
+          cd build 
+          cmake .. 
+          make -j2 
+          make cpp-test 
+          make python-test 
+          
+          echo "run cpp example" 
+          cd examples 
+          ./hello_world 
+          cd .. 
+          echo "run cpp benchmark" 
+          cd benchmark 
+          ./benchmark_cpptools 
+          cd .. 
+          echo "Completed script successfully" 
+
+
+  - job: macOS
+    pool:
+      vmImage: 'xcode9-macos10.13'
+    strategy:
+      maxParallel: 2
+      # matrix:
+      #   py36:
+      #     PY_VERSION: 3.6
+      #   py37:
+      #     PY_VERSION: 3.7
+    variables:
+      repoDir: '$(Build.Repository.LocalPath)'
+    steps:
+      - bash: echo "##vso[task.prependpath]$CONDA/bin"
+        displayName: Add conda to PATH
+
+      - script: |
+          source activate myroot
+          conda config --set always_yes yes --set changeps1 no
+          conda env create -f cpptools-dev-requirements.yml
+          echo "source conda env"
+          source activate cpptools-dev-requirements
+          mkdir build
+          cd build
+          echo "cmake"
+          cmake ..
+          echo "make"
+          make -j2
+          make python-test
+          echo "Completed script successfully"
+
+
+
+  - job:
+    displayName: vs2017-win2016
+    pool:
+      vmImage: 'vs2017-win2016'
+    strategy:
+      maxParallel: 2
+      # matrix:
+      #   py36:
+      #     PY_VERSION: 3.6
+      #     VS_VERSION: 2015
+      #   # py27:
+      #   #   PY_VERSION: 2.7
+    variables:
+      repoDir: '$(Build.Repository.LocalPath)'
+    steps:
+    - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+      displayName: Add conda to PATH
+
+    - script: |
+        echo "create"
+        conda env create   -f cpptools-dev-requirements.yml
+        echo "done"
+      displayName: create dev requirements env
+
+    - script: |
+        echo "activate"
+        call activate cpptools-dev-requirements
+        echo "mkdir"
+        mkdir build
+        cd build
+        echo "cmake gen"
+        cmake .. -G"Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Release  ^
+              -DDEPENDENCY_SEARCH_PREFIX="%CONDA_PREFIX%\Library" -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%\Library"
+
+      displayName: configure project
+    - script: |
+        echo "cd path"
+        cd build
+        echo "activate"
+        call activate cpptools-dev-requirements
+        cmake --build . --target ALL_BUILD
+
+      displayName: build project
+    - script: |
+        echo "cd path"
+        cd build
+        echo "activate"
+        call activate cpptools-dev-requirements
+        echo "run tests"
+        cmake --build . --target python-test
+        cmake --build . --target cpp-test
+
+      displayName: run tests
+
+
+
+
