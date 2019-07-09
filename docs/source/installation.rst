@@ -7,7 +7,6 @@ Besides the cpptools headers, all these methods place the ``cmake`` project conf
 
 
 
-
 .. code-block:: shell
 
     cd cpptools
