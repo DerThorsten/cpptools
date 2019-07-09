@@ -10,27 +10,37 @@ This software is licensed under the MIT license license. See the LICENSE.txt fil
 
 
 
-.. toctree::
-   :caption: INSTALLATION
-   :maxdepth: 2
-
-   installation
-   changelog
 
 .. toctree::
-   :caption: USAGE
+   :caption: Usage
    :maxdepth: 2
 
    basic_usage
 
 .. toctree::
-   :caption: EXAMPLES
+   :caption: Folder Structure
+   :maxdepth: 2
+
+   folder_structure
+
+.. toctree::
+   :caption: Components
+   :maxdepth: 2
+
+   unit_tests
+   benchmark
+   python
+   examples
+   conda_recipe
+
+.. toctree::
+   :caption: Examples
    :maxdepth: 2
 
    examples.rst
 
 .. toctree::
-   :caption: API REFERENCE
+   :caption: Api Reference
    :maxdepth: 2
    
    api/cpptools.rst
