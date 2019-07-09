@@ -1,12 +1,6 @@
 Installation
 ============
 
-Although ``cpptools`` is a header-only library, we provide standardized means to install it, with package managers or with cmake.
-
-Besides the cpptools headers, all these methods place the ``cmake`` project configuration file in the right location so that third-party projects can use cmake's ``find_package`` to locate cpptools headers.
-
-
-
 .. code-block:: shell
 
     cd cpptools
