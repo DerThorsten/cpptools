@@ -1,9 +1,0 @@
-name: cpptools-docs
-
-channels:
-  - anaconda
-  - conda-forge
-dependencies:
-  - cookiecutter
-  - sphinx
-  - sphinx_rtd_theme
