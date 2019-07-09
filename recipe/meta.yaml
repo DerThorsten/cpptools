@@ -36,14 +36,14 @@ test:
     # -  make python-test
 
 about:
-  home:  https://github.com/JohnDoe/cpptools
+  home:  https://github.com/DerThorsten/cpptools
   license: MIT
   license_family: MIT
   
   summary: 'cpptools is a modern C++ library'
   description: 'cpptools is a modern C++ library'
   documentation_url: https://readthedocs.org/projects/cpptools/
-  dev_url: https://github.com/JohnDoe/cpptools
+  dev_url: https://github.com/DerThorsten/cpptools
 
 extra:
   recipe-maintainers:
