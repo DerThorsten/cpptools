@@ -44,8 +44,8 @@ templates_path = ['_template']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'cpptools'
-copyright = ' 2019 , John Doe'
-author = 'John Doe'
+copyright = ' 2019 , Thorsten Beier'
+author = 'Thorsten Beier'
 
 
 exclude_patterns = []
