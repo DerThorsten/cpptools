@@ -3,11 +3,6 @@ Introduction
 
 cpptools is a modern C++ library
 
-`cookiecutter.project_name` provides:
-
-
-- an API following the idioms of the **C++ standard library**.
-
 
 Licensing
 ---------
@@ -40,20 +35,6 @@ This software is licensed under the MIT license license. See the LICENSE.txt fil
    
    api/cpptools.rst
 
-.. toctree::
-   :caption: DEVELOPER ZONE
-   :maxdepth: 2
-
-   compilers
-   build-options
-   developer/xtensor_internals
-   external-structures
-   releasing
-
-.. toctree::
-   :caption: MISCELLANEOUS
-
-   related
 
 
 .. _NumPy: http://www.numpy.org
