@@ -12,9 +12,10 @@ This software is licensed under the MIT license license. See the LICENSE.txt fil
 
 
 .. toctree::
-   :caption: Usage
+   :caption: Basics
    :maxdepth: 2
 
+   features
    basic_usage
 
 .. toctree::
