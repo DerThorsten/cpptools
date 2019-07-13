@@ -34,6 +34,7 @@ This software is licensed under the MIT license license. See the LICENSE.txt fil
    examples
    conda_recipe
 
+
 .. toctree::
    :caption: Examples
    :maxdepth: 2
@@ -41,14 +42,14 @@ This software is licensed under the MIT license license. See the LICENSE.txt fil
    examples.rst
 
 .. toctree::
-   :caption: Api Reference
+   :caption: C++ Api Reference
    :maxdepth: 2
    
-   api/cpptools.rst
+   api/cpptools_api.rst
 
+.. toctree::
+   :caption: Python Reference
+   :maxdepth: 2
+   
+   pyapi/modules.rst
 
-
-.. _NumPy: http://www.numpy.org
-.. _Buffer Protocol: https://docs.python.org/3/c-api/buffer.html
-.. _libdynd: http://libdynd.org
-.. _xtensor-python: https://github.com/QuantStack/xtensor-python
