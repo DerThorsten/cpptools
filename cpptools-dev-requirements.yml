@@ -22,3 +22,6 @@ dependencies:
   - xtensor-python
   - pybind11
   
+  - pip
+  - pip:
+    - exhale
