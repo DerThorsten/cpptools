@@ -2,17 +2,12 @@
 cpptools
 =================================================
 
-.. image:: https://img.shields.io/travis/DerThorsten/cpptools.svg
-        :target: https://travis-ci.org/DerThorsten/cpptools
-
 .. image:: https://readthedocs.org/projects/cpptools/badge/?version=latest
         :target: http://cpptools.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status               
 
-
-
-
-
+.. image:: https://img.shields.io/travis/DerThorsten/cpptools.svg
+        :target: https://travis-ci.org/DerThorsten/cpptools
 
 .. image:: https://travis-ci.org/DerThorsten/cpptools.svg?branch=master
     :target: https://travis-ci.org/DerThorsten/cpptools
@@ -22,7 +17,6 @@ cpptools
 
 .. image:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/DerThorsten.cpptools?branchName=master&jobName=Linux
     :target: https://dev.azure.com/derthorstenbeier/cpptools/_build/latest?definitionId=1&branchName=master
-
 
 .. image:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/DerThorsten.cpptools?branchName=master&jobName=macOS
     :target: https://dev.azure.com/derthorstenbeier/cpptools/_build/latest?definitionId=1&branchName=master

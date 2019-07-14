@@ -65,6 +65,8 @@ target_include_directories(${INTERFACE_LIB_NAME}
 
 # Benchmark
 # ============
+OPTION(BUILD_DOCS "build docs" ON)
+
 OPTION(BUILD_BENCHMARK "${PROJECT_NAME} test suite" ON)
 OPTION(DOWNLOAD_GOOGLE_BENCHMARK "build google benchmark from downloaded sources" ON)
 
@@ -74,6 +76,10 @@ endif()
 
 if(BUILD_BENCHMARK)
     add_subdirectory(benchmark)
+endif()
+
+if(BUILD_DOCS)
+    add_subdirectory(docs)
 endif()
 
 # Python
