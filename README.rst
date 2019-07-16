@@ -15,14 +15,14 @@ cpptools
 .. image:: https://circleci.com/gh/DerThorsten/cpptools/tree/master.svg?style=svg
     :target: https://circleci.com/gh/DerThorsten/cpptools/tree/master
 
-.. image:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/DerThorsten.cpptools?branchName=master&jobName=Linux
+.. image:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/e:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/DerThorsten.cpptools?branchName=master
     :target: https://dev.azure.com/derthorstenbeier/cpptools/_build/latest?definitionId=1&branchName=master
 
-.. image:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/DerThorsten.cpptools?branchName=master&jobName=macOS
-    :target: https://dev.azure.com/derthorstenbeier/cpptools/_build/latest?definitionId=1&branchName=master
 
-.. image:: https://dev.azure.com/derthorstenbeier/cpptools/_apis/build/status/DerThorsten.cpptools?branchName=master&jobName=Windows
-    :target: https://dev.azure.com/derthorstenbeier/cpptools/_build/latest?definitionId=1&branchName=master
+
+
+
+
 
 
 Features
