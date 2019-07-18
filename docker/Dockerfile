@@ -17,8 +17,6 @@ RUN cd cpptools && conda env create -f cpptools-dev-requirements.yml
 RUN echo "source activate cpptools-dev-requirements" > ~/.bash
 ENV PATH /opt/conda/envs/cpptools-dev-requirements/bin:$PATH
 
-
-
 # activate
 #RUN conda activate cpptools-dev-requirements
 
