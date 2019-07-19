@@ -1,10 +1,11 @@
 name: cpptools-docs
 
 channels:
+  - anaconda
   - conda-forge
-
 dependencies:
-  - cmake
-  - xtensor
-  - xtensor-python
+  - cookiecutter
+  - sphinx
+  - doxygen
   - breathe
+  - sphinx_rtd_theme

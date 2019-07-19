@@ -1,25 +1,97 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
 import subprocess
-
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-
-if on_rtd:
-    subprocess.call('cd ..; doxygen', shell=True)
+import sys
+import os
+import shutil
+import fnmatch
+import sphinx_rtd_theme
 
 import sys
 import os
+import shutil
+import fnmatch
 import sphinx_rtd_theme
+import os
+import subprocess
+
+on_rtd  = os.environ.get('READTHEDOCS', None) == 'True'
+on_travis = os.environ.get('TRAVIS', None) == 'True'
+on_ci = on_rtd or on_travis
 
 
 
-if on_rtd:
 
-    cmake_defs = "-DDOWNLOAD_DOCTEST=OFF -DBUILD_TEST=OFF  -DBUILD_EXAMPLES=OFF -DDOWNLOAD_GOOGLE_BENCHMARK=OFF -DBUILD_BENCHMARK=OFF"
+def erase_folder_content(folder):
+    for file_object in os.listdir(folder):
+        file_object_path = os.path.join(folder, file_object)
+        if os.path.isfile(file_object_path):
+            os.unlink(file_object_path)
+        else:
+            shutil.rmtree(file_object_path) 
+
+def patch_apidoc(folder):
+    for root, dirnames, filenames in os.walk(folder):
+        for filename in fnmatch.filter(filenames, '*.rst'):
+            fname = os.path.join(root, filename)
+
+            # Read in the file
+            with open(fname, 'r') as file :
+              filedata = file.read()
+
+            # Replace the target string
+            filedata = filedata.replace('   :members:', '   :members:\n   :imported-members:')
+
+            # Write the file out again
+            with open(fname, 'w') as file:
+              file.write(filedata)
+
+
+# build everything
+package_name = "cpptools"
+this_dir = os.path.dirname(__file__)
+py_mod_path  = os.path.join(this_dir, '../../python/module')
+
+if on_ci:
+
+    cmake_defs = "-DBUILD_PYTHON=ON  -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF  -DBUILD_EXAMPLES=OFF -DDOWNLOAD_GOOGLE_BENCHMARK=OFF -DBUILD_EXAMPLES=OFF -DBUILD_BENCHMARK=OFF"
     cmake_py_ver = "-DPYTHON_EXECUTABLE=%s"%(str(sys.executable),)
     subprocess.call('cd ../.. && cmake . %s %s && make -j2'%(cmake_defs, cmake_py_ver),          shell=True)
+
+    # append python path to contain module from build dir
+    import sys
+    import os
+    this_dir = os.path.dirname(__file__)
+    py_mod_path  = os.path.join(this_dir, '../../python/module')
+    package_dir = os.path.join(py_mod_path, package_name)
+    sys.path.append(py_mod_path)
+    package_dir = os.path.join(py_mod_path, package_name)
+    input_arg =  "INPUT = ../../include"
+else:
+    import runpy
+    f = os.path.join(this_dir, 'cmake_path.py')
+    res_dict = runpy.run_path(f)
+    py_mod_path = res_dict['py_mod_path']
+    include_path = res_dict['include_path']
+    sys.path.append(py_mod_path)
+    package_dir = os.path.join(py_mod_path, package_name)
+    input_arg = "INPUT = {}".format(include_path)
+
+
+apidoc_out_folder =  os.path.join(this_dir, 'pyapi')
+template_dir =  os.path.join(this_dir, '_template')
+erase_folder_content(apidoc_out_folder)
+arglist = ['sphinx-apidoc','-o',apidoc_out_folder,package_dir,'-P']
+print(arglist)
+subprocess.call(arglist, shell=False)
+
+
+# patch apidoc (the conda version does not support -t / --templatedir opt)
+patch_apidoc(apidoc_out_folder)
+
+
 
 
 html_theme = "sphinx_rtd_theme"
@@ -31,21 +103,41 @@ html_theme_path = [
 ]
 
 
-# html_theme_options = {
-#   "codebgcolor": 'black'
-# }
-
-
 #html_static_path = ['_static']
+extensions = ['breathe','exhale','sphinx.ext.todo', 'sphinx.ext.viewcode', 'sphinx.ext.autodoc','sphinx.ext.napoleon']
+breathe_projects = { 'cpptools': '../xml/' }
 
-extensions = ['breathe']
-breathe_projects = { 'cpptools': '../xml' }
+
+
+exhale_args = {
+    # These arguments are required
+    "containmentFolder":     "./api",
+    "rootFileName":          "cpptools_api.rst",
+    "rootFileTitle":         "cpptools API",
+    "doxygenStripFromPath":  "..",
+    # Suggested optional arguments
+    "createTreeView":        True,
+    # TIP: if using the sphinx-bootstrap-theme, you need
+    # "treeViewIsBootstrap": True,
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin":    "INPUT = ../../include"
+}
+
+# Tell sphinx what the primary language being documented is.
+primary_domain = 'cpp'
+
+# Tell sphinx what the pygments highlight language should be.
+highlight_language = 'cpp'
+
+
+breathe_default_project = 'cpptools'
+
 templates_path = ['_template']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'cpptools'
-copyright = ' 2019 , John Doe'
-author = 'John Doe'
+copyright = ' 2019 , Thorsten Beier'
+author = 'Thorsten Beier'
 
 
 exclude_patterns = []

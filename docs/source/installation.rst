@@ -1,48 +1,40 @@
-.. raw:: html
-
-   <style>
-   .rst-content .section>img {
-       width: 30px;
-       margin-bottom: 0;
-       margin-top: 0;
-       margin-right: 15px;
-       margin-left: 15px;
-       float: left;
-   }
-   </style>
-
 Installation
 ============
 
-Although ``cpptools`` is a header-only library, we provide standardized means to install it, with package managers or with cmake.
+.. code-block:: shell
 
-Besides the cpptools headers, all these methods place the ``cmake`` project configuration file in the right location so that third-party projects can use cmake's ``find_package`` to locate xtensor headers.
-
-
-
-From source with cmake
-----------------------
-
-You can also install ``cpptools`` from source with cmake. 
-On Unix platforms, from the source directory:
-
-.. code::
-
+    cd cpptools
+    conda env create -f cpptools-dev-requirements.yml
+    source activate cpptools-dev-requirements
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/path/to/prefix ..
+    cmake ..
+    make -j2
+    make cpp-test
+    make python-test
     make install
+    cd examples
+    ./hello_world
+    cd ..
+    cd benchmark
+    ./benchmark_cpptools
 
-On Windows platforms, from the source directory:
 
-.. code::
+On a windows machine this looks like:
 
+.. code-block:: shell
+
+    cd cpptools
+    conda env create -f cpptools-dev-requirements.yml
+    call activate cpptools-dev-requirements
     mkdir build
     cd build
-    cmake -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX=/path/to/prefix ..
-    nmake
-    nmake install
-
-See the section of the documentation on :doc:`build-options`, for more details on how to cmake options.
+    cmake .. -G"Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Release  ^
+          -DDEPENDENCY_SEARCH_PREFIX="%CONDA_PREFIX%\Library" -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%\Library"
+    call activate cpptools-dev-requirements
+    cmake --build . --target ALL_BUILD
+    cmake --build . --target python-test
+    cmake --build . --target cpp-test
+    cmake --build . --target install
 
 
