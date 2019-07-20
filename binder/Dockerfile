@@ -1,4 +1,4 @@
-FROM derthorsten/cpptools:$GIT_TAG
+FROM derthorsten/cpptools:v_2019_07_20_14_39_21
 
 
 ##########################################
