@@ -1,4 +1,4 @@
-FROM derthorsten/cpptools:latest
+FROM derthorsten/cpptools:$GIT_TAG
 
 
 ##########################################
