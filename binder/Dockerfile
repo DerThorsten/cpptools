@@ -1,4 +1,4 @@
-FROM derthorsten/cpptools:v_2019_10_19_00_01_55
+FROM derthorsten/cpptools:v_2019_10_20_00_01_31
 
 
 ##########################################
