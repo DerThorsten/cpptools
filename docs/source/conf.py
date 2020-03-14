@@ -9,18 +9,10 @@ import shutil
 import fnmatch
 import sphinx_rtd_theme
 
-import sys
-import os
-import shutil
-import fnmatch
-import sphinx_rtd_theme
-import os
-import subprocess
 
 on_rtd  = os.environ.get('READTHEDOCS', None) == 'True'
 on_travis = os.environ.get('TRAVIS', None) == 'True'
 on_ci = on_rtd or on_travis
-
 
 
 
@@ -46,7 +38,7 @@ def patch_apidoc(folder):
 
             # Write the file out again
             with open(fname, 'w') as file:
-              file.write(filedata)
+                file.write(filedata)
 
 
 # build everything
@@ -136,7 +128,7 @@ templates_path = ['_template']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'cpptools'
-copyright = ' 2019 , Thorsten Beier'
+copyright = ' 2020 , Thorsten Beier'
 author = 'Thorsten Beier'
 
 
