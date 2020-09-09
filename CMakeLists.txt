@@ -8,17 +8,15 @@ set(PROJECT_INCLUDE_DIR    ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(CPP_ROOT_FOLDER_NAME   cpptools)
 include_directories(${PROJECT_INCLUDE_DIR})
 
-# C++ 14
-# ===========
 include(CheckCXXCompilerFlag)
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
-    CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CPP14_FLAG)
-    if (HAS_CPP14_FLAG)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+    CHECK_CXX_COMPILER_FLAG("-std=c++20" HAS_CPP17_FLAG)
+    if (HAS_CPP17_FLAG)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
     else()
-        message(FATAL_ERROR "Unsupported compiler -- C++14 support required!")
+        message(FATAL_ERROR "Unsupported compiler -- C++20 support required!")
     endif()
-endif()   
+endif()  
 
 
 # Versionning
