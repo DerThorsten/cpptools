@@ -128,7 +128,7 @@ templates_path = ['_template']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'cpptools'
-copyright = ' 2023 , Thorsten Beier'
+copyright = ' 2024 , Thorsten Beier'
 author = 'Thorsten Beier'
 
 
